@@ -1,103 +1,120 @@
-import Image from "next/image";
-
+// pages/index.js
+"use client";
+import { useState, useEffect } from 'react';
+import Head from 'next/head';
+import Image from 'next/image';
+import TrustedLogos from '@/componen/TrustedLogos';
+import SelectedWork from '@/componen/SelectedWork';
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [scrolled, setScrolled] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  return (
+    <>
+      <Head>
+        <title>Portfolio Website</title>
+        <meta name="description" content="Frontend Web Developer Portfolio" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <header className="fixed top-0 w-full z-50">
+        <div className="flex justify-end p-5 px-30 pt-10">
+          <button className=" font-bold block ml-auto border border-[#333] w-[132px] py-2 rounded-full text-white bg-[#1a1a1a] cursor-pointer">MENU</button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      </header>
+
+      <main>
+        {/* Hero Section with fixed background */}
+        <section className="relative h-[110vh]">
+          <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent z-10"></div>
+
+          <div className="fixed inset-0 bg-gray-300">
+            <Image
+              src="/image/hero/headerBG.png"
+              alt="Hero background"
+              layout="fill"
+              objectFit="cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-blac/70 to-gray-200" />
+          </div>
+
+          <div className="relative z-20 flex items-center h-full">
+            <div className="container mx-auto px-6">
+              <div className="max-w-xl">
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                  Hi, I'm nugraha algeio<br />
+                  Frontend Web Developer
+                </h1>
+                <p className="text-[#989898] mb-8 font-normal text-xl">
+                  Seorang insinyur perangkat lunak frontend dan perancang
+                  antarmuka yang membangun situs web yang seperti UI UX,
+                  mudah diakses, dan berkinerja tinggi.
+                </p>
+                <div className="flex gap-4">
+                  <a href="#contact">
+                    <div className="relative inline-block group">
+                      <div className="absolute inset-0 bg-gray-400 rounded-lg scale-0 group-hover:scale-120 transition-transform duration-300 ease-out -z-10" />
+
+                      <button className="bg-white text-black px-14 py-5 font-bold rounded-lg hover:cursor-pointer relative z-10">
+                        see me
+                      </button>
+                    </div>
+                  </a>
+                  <a href="#work">
+                    <button className="hover:cursor-pointer border border-gray-500 hover:border-white text-white px-17 py-5 font-bold rounded-lg">
+                      See my work
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Trusted By Section */}
+          <section className="relative bg-[#0c0a0a] py-20 z-30 rounded-t-[70px] -mt-16 pt-20">
+            <div className="container mx-auto px-6 py-20">
+              <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">
+                Trusted by
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-12 items-center justify-items-center py-10">
+                {[...Array(4)].map((_, i) => (
+                  <TrustedLogos
+                    key={i}
+                    startFrom={Math.floor(Math.random() * 1000)}
+                    intervalMs={Math.floor(Math.random() * 2000) + 2000}
+                  />
+                ))}
+              </div>
+
+            </div>
+          
+          {/* Selected Work Section */}
+          <section className="bg-[#0c0a0a] pb-25" id="work">
+            <div className="container mx-auto px-2">
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-16 text-center">
+                Selected my Work
+              </h2>
+              <SelectedWork />
+            </div>
+          </section>
+          </section>
+        </main>
+      </>
+      );
 }
