@@ -43,13 +43,12 @@ export default function TrustedLogos({ startFrom = 0, intervalMs }: Props) {
           key={logos[index].src}
           src={logos[index].src}
           alt={logos[index].alt}
-          className="absolute w-full h-full object-contain filter brightness-0 invert opacity-60"
+          className="absolute w-full h-full object-contain dark:filter dark:brightness-0 dark:invert dark:opacity-60 opacity-75"
           initial={{ opacity: 0, y: 30, scale: 0.7 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
+          animate={{ opacity: 1, y: 0, scale: 1}}
           exit={{ opacity: 0, y: -30, scale: 0.7 }}
           transition={{ duration: 0.6 }}
         />
       </AnimatePresence>
-    </div>
-  );
+    </div>  );
 }
